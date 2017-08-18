@@ -1,6 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Homepage from "@/homepage/Homepage";
+import Clubs from "@/clubs/Findclub";
+import Signup from "@/auth/Signup";
+import Info from "@/moreinfo/Info";
+import theComment from "@/comment/Comment";
 
 Vue.use(Router);
 
@@ -10,7 +14,28 @@ export default new Router({
       path: "/",
       name: "homepage",
       component: Homepage
+    },
+    {
+      path: "/findclub",
+      name: "findclub",
+      component: Clubs
+    },
+    {
+      path: "/auth/signup",
+      name: "signup",
+      component: Signup
+    },
+    {
+      path: "/info",
+      name: "info",
+      component: Info
+    },
+    {
+      path: "/comment",
+      name: "comment",
+      component: theComment
     }
+
     // {
     //   path: '/auth/signup',
     //   name: 'signup',
