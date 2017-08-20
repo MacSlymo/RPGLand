@@ -5,15 +5,23 @@
 
     <div class="field">
       <label class="label">Name</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="Text input">
+      <div class="control has-icons-left has-icons-right">
+        <input class="input" type="text" placeholder="Text input" value="Peter Jackson">
+        <span class="icon is-small is-left">
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fa fa-check"></i>
+        </span>
       </div>
+      <!-- <p class="help is-success">This username is available</p> -->
     </div>
+    <br>
 
     <div class="field">
       <label class="label">Username</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+        <input class="input" type="text" placeholder="Text input" value="RPGlover91">
         <span class="icon is-small is-left">
           <i class="fa fa-user"></i>
         </span>
@@ -21,74 +29,83 @@
           <i class="fa fa-check"></i>
         </span>
       </div>
-      <p class="help is-success">This username is available</p>
+      <!-- <p class="help is-success">This username is available</p> -->
     </div>
+    <br>
 
     <div class="field">
       <label class="label">Email</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input is-danger" type="text" placeholder="Email input" value="hello@">
+        <input class="input" type="text" placeholder="Email input" value="peter.jackson@gmail.com">
         <span class="icon is-small is-left">
           <i class="fa fa-envelope"></i>
         </span>
         <span class="icon is-small is-right">
-          <i class="fa fa-warning"></i>
+          <i class="fa fa-check"></i>
         </span>
       </div>
-      <p class="help is-danger">This email is invalid</p>
+      <!-- <p class="help is-danger">This email is invalid</p> -->
     </div>
+    <br>
 
     <div class="field">
-      <label class="label">Subject</label>
-      <div class="control">
-        <div class="select">
-          <select>
-            <option>Select dropdown</option>
-            <option>With options</option>
-          </select>
-        </div>
+      <label class="label">Password</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input" type="password" placeholder="" value="12345">
+        <span class="icon is-small is-left">
+          <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fa fa-check"></i>
+        </span>
       </div>
+      <!-- <p class="help is-danger">This email is invalid</p> -->
     </div>
+    <br>
 
     <div class="field">
-      <label class="label">Message</label>
-      <div class="control">
-        <textarea class="textarea" placeholder="Textarea"></textarea>
-      </div>
-    </div>
-
-    <div class="field">
-      <div class="control">
-        <label class="checkbox">
-          <input type="checkbox">
-          I agree to the <a href="#">terms and conditions</a>
-        </label>
-      </div>
-    </div>
-
-    <div class="field">
+      <label class="label">Are you a Player or a Game Master ?</label>
       <div class="control">
         <label class="radio">
           <input type="radio" name="question">
-          Yes
+          Player
         </label>
         <label class="radio">
           <input type="radio" name="question">
-          No
+          Game Master
         </label>
       </div>
     </div>
+    <br>
 
-    <div class="field is-grouped">
-      <div class="control">
+    <div class="field">
+      <label class="label">Phone Number (optional)</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input" type="text" placeholder="0675263594" value="">
+        <span class="icon is-small is-left">
+        <i class="fa fa-mobile" aria-hidden="true"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fa fa-check"></i>
+        </span>
+      </div>
+      <!-- <p class="help is-danger">This email is invalid</p> -->
+    </div>
+    <br>
+
+    <div class="field">
+      <div class="label">
         <button class="button is-primary">Submit</button>
       </div>
-      <div class="control">
-        <button class="button is-link">Cancel</button>
-      </div>
     </div>
+    <br>
 
-    <h1>Already have an Account ? Please <router-link to="">Log In</router-link></h1>
+    <h1>Already have an Account ? Please
+      <a
+      href="http://localhost:8080/#/auth/login">
+      Log in here
+      </a>
+    </h1>
   </div>
 </template>
 

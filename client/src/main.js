@@ -4,13 +4,13 @@ import Vue from "vue";
 import App from "./App";
 import "bulma/css/bulma.css";
 import router from "./router";
-import * as VueGoogleMaps from "vue2-google-maps";
-
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: "AIzaSyCoIOATH0IFS9Pky6Dn32Tk_fPq_pdtgDE"
-  }
-});
+// import * as VueGoogleMaps from "vue2-google-maps";
+//
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     key: "AIzaSyCoIOATH0IFS9Pky6Dn32Tk_fPq_pdtgDE"
+//   }
+// });
 
 Vue.config.productionTip = false;
 

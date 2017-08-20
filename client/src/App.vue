@@ -14,13 +14,13 @@
         </div>
 
         <div class="navbar-item">
-          <router-link class="navbar-link" to="">
+          <router-link class="navbar-link" to="/newclub">
             <i class="fa fa-plus-circle" aria-hidden="true"></i>
           </router-link>
         </div>
 
         <div class="navbar-item">
-          <router-link class="navbar-link" to="/auth/signup">
+          <router-link class="navbar-link" to="/myaccount">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
           </router-link>
         </div>
@@ -100,7 +100,7 @@ export default {
 }
 
 #burger {
-  margin-top: 20px;
+  margin-top: 26px;
   margin-right: 15px;
 }
 

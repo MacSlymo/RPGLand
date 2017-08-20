@@ -3,44 +3,79 @@
     <h1 class="title-component">Find a club in the <router-link to="">List</router-link> or on the <router-link to="">Map</router-link> !</h1>
 
     <ul>The clubs
-      <li>club 1</li>
-      <li>club 2</li>
-      <li>club 3</li>
-      <li>club 4</li>
-      <li>club 5</li>
-      <li>club 6</li>
+      <li v-for="club in clubs">
+        <router-link
+        :to="'/clubs/' + club._id">
+        {{ club.name }}
+        </router-link>
+      </li>
     </ul>
     <br>
     <br>
-    <gmap-map
-    center="center"
-    zoom="7"
-    style="width: 100%; height: 500px; text-align: center"
-  >
-    <gmap-marker
-      key="index"
-      position="m.position"
-      clickable="true"
-      draggable="true"
-      @click=""
-    ></gmap-marker>
-  </gmap-map>
+  <!-- <div id="map-canvas"></div> -->
   </div>
 </template>
 
 <script>
+// import googlemaps from "https://maps.googleapis.com/maps/api/js?key=AIzaSyBt-Uo7thZDjaiOx65s8BQmjBQX90xBsBs&sensor=false";
+import axios from "axios";
+
+const myAPI = axios.create({
+  baseURL: "http://localhost:3000/api/"
+});
+
 export default {
   name: "clubs",
+  props: ["clubs"],
   data() {
-    return {};
+    return {
+      msg: "WELCOME",
+      clubs: null
+    };
+  },
+  created() {
+    this.getClubs().then(clubs => {
+      this.allClubs = clubs;
+    });
+  },
+  methods: {
+    getclub(clubId) {
+      return myAPI.get("/clubs/" + clubId).then(response => {
+        return response.data;
+      });
+    },
+
+    getClubs() {
+      return myAPI.get("/clubs/").then(response => {
+        return response.data;
+      });
+    },
+
+    cancelEditing() {
+      this.edit = false;
+    },
+
+    addNewClub() {
+      this.edit = true;
+    },
+
+    submitNewClub() {
+      this.edit = false;
+      myAPI.post("/clubs/", { text: this.text }).then(response => {
+        this.getClubs().then(clubs => {
+          this.allClubs = clubs;
+        });
+        return response.data;
+      });
+      this.text = "";
+    }
   }
 };
 </script>
 
 <style lang="css">
-#map {
+/*#map-canvas {
       height: 600px;
       width: auto;
-      text-align: center;
-     }
+     }*/
 </style>

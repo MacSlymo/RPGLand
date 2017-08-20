@@ -7,24 +7,11 @@ const clubSchema = new Schema({
     required: true,
     unique: true
   },
-  address: {
-    street: {
-      type: String,
-      required: true
-    },
-    city: {
-      type: String,
-      required: true
-    },
-    zip: {
-      type: Number,
-      required: true
-    }
-  },
   email: {
     type: String,
     required: true
   },
+  address: String,
   googlePlaceId: String,
   location: {
     type: { type: String },
@@ -37,5 +24,7 @@ const clubSchema = new Schema({
   gamemasters: [],
   members: []
 });
+
+clubSchema.index({ location: "2dsphere" });
 
 module.exports = mongoose.model("Club", clubSchema);

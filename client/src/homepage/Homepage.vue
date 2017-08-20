@@ -9,7 +9,7 @@
             <br>
             <h3 class="subtitle">Find RPG Clubs near you</h3>
             <br>
-            <h3 class="subtitle">Discover </h3>
+            <h3 class="subtitle">Enter the fellowship</h3>
             <br>
             <h3 class="subtitle">Create a new character for your next session (Soon ...)</h3>
           </div>
@@ -37,7 +37,7 @@
           <div class="content">
             <p class="title">Join the Community !</p>
             <br>
-            <h3 class="subtitle">Join Game Masters (GM) and other players</h3>
+            <h3 class="subtitle">Join other players</h3>
             <br>
             <h3 class="subtitle">Live adventures together</h3>
             <br>
