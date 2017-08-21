@@ -5,11 +5,14 @@ const User = require("../models/user");
 const config = require("../config");
 
 router.post("/signup", (req, res, next) => {
-  const { username, name, password } = req.body;
+  const { username, password, nickname, email, tel, gm } = req.body;
 
   const user = new User({
     username,
-    name
+    nickname,
+    email,
+    tel,
+    gm
   });
 
   User.register(user, password, err => {
@@ -40,7 +43,7 @@ router.post("/login", (req, res, next) => {
       }
     });
   } else {
-    res.sendStatus(401);
+    res.sendStatus(401).json("Username or Password missing");
   }
 });
 
