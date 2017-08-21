@@ -4,7 +4,13 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/jdrland");
+const passport = require("passport");
+const User = require("./models/user");
+const config = require("./config");
+const { Strategy, ExtractJwt } = require("passport-jwt");
+
 const index = require("./routes/index");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 
@@ -25,7 +31,27 @@ app.use(function(req, res, next) {
   next();
 });
 
+passport.initialize();
+const strategy = new Strategy(
+  {
+    secretOrKey: config.jwtSecret,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+  },
+  (payload, done) => {
+    User.findById(payload.id).then(user => {
+      if (user) {
+        done(null, user);
+      } else {
+        done(new Error("User not found"));
+      }
+    });
+  }
+);
+// tell pasport to use it
+passport.use(strategy);
+
 app.use("/", index);
+app.use("/api", authRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -36,13 +62,10 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
   // render the error page
+  console.log(err);
   res.status(err.status || 500);
-  res.render("error");
+  res.json("error");
 });
 
 module.exports = app;

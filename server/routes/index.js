@@ -17,7 +17,7 @@ router.get("/api/clubs/", (req, res, next) => {
 });
 
 router.get("/api/clubs/:id", (req, res, next) => {
-  Club.findById(req.params.id, function(err, epic) {
+  Club.findById(req.params.id, function(err, club) {
     if (err) res.json("club not found");
     else res.json(club);
   });

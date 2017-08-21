@@ -137,10 +137,10 @@
       </div>
       <!-- <p class="help is-danger">This email is invalid</p> -->
     </div>
-    
+
     <div class="field">
       <div class="label">
-        <button class="button is-primary">Submit</button>
+        <button v-on:click="submitNewStory()"class="button is-primary">Submit</button>
       </div>
     </div>
   </div>
@@ -148,10 +148,27 @@
 </template>
 
 <script>
+import axios from "axios";
+
+const myAPI = axios.create({
+  baseURL: "http://localhost:3000/api/"
+});
+
 export default {
   name: "newclub",
   data() {
     return {};
+  },
+  methods: {
+    submitNewClub() {
+      myAPI.post("/clubs/", { text: this.text }).then(response => {
+        this.getClubs().then(clubs => {
+          this.allClubs = clubs;
+        });
+        return response.data;
+      });
+      this.text = "";
+    }
   }
 };
 </script>

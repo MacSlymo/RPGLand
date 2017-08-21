@@ -34,41 +34,22 @@ export default {
     };
   },
   created() {
-    this.getClubs().then(clubs => {
-      this.allClubs = clubs;
+    this.getClubs().then(club => {
+      this.club = club;
     });
   },
   methods: {
     getclub(clubId) {
       return myAPI.get("/clubs/" + clubId).then(response => {
-        return response.data;
+        return response.data.name;
       });
-    },
-
-    getClubs() {
-      return myAPI.get("/clubs/").then(response => {
-        return response.data;
-      });
-    },
-
-    cancelEditing() {
-      this.edit = false;
-    },
-
-    addNewClub() {
-      this.edit = true;
-    },
-
-    submitNewClub() {
-      this.edit = false;
-      myAPI.post("/clubs/", { text: this.text }).then(response => {
-        this.getClubs().then(clubs => {
-          this.allClubs = clubs;
-        });
-        return response.data;
-      });
-      this.text = "";
     }
+
+    // getClubs() {
+    //   return myAPI.get("/clubs/").then(response => {
+    //     return response.data;
+    //   });
+    // }
   }
 };
 </script>
