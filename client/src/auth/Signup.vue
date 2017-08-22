@@ -3,6 +3,10 @@
 
     <h1 class="title-component">Create your Account !</h1>
 
+    <article v-if="error" class="message is-danger">
+      <div class="message-body">{{ error }}</div>
+    </article>
+
     <div class="field">
       <label class="label">Username</label>
       <div class="control has-icons-left has-icons-right">
@@ -101,7 +105,6 @@
       </div>
     </div>
     <br>
-    <pre>{{ response }}</pre>
 
     <h1>Already have an Account ? Please
       <a
@@ -113,10 +116,43 @@
 </template>
 
 <script>
+import axios from "axios";
+import auth from "./api";
+
 export default {
   name: "signup",
   data() {
-    return {};
+    return {
+      username: "",
+      password: "",
+      nickname: "",
+      gm: false,
+      email: "",
+      tel: "",
+      error: ""
+    };
+  },
+  methods: {
+    signup() {
+      this.error = "";
+      auth
+        .signup({
+          username: this.username,
+          password: this.password,
+          nickname: this.nickname,
+          gm: this.gm,
+          email: this.email,
+          tel: this.tel
+        })
+        .then(response => {
+          this.$router.push("/findclub");
+        })
+        .catch(err => {
+          this.error =
+            err.response.data +
+            " : Please fill in all the fields or change your Username/Nickname";
+        });
+    }
   }
 };
 </script>

@@ -4,14 +4,6 @@ const auth = axios.create({
   baseURL: "http://localhost:3000/api/"
 });
 
-const user = {
-  username,
-  password,
-  nickname,
-  email,
-  tel,
-  gm
-};
 function signup(user) {
   return auth.post("/signup", user).then(response => {
     return response.data;
