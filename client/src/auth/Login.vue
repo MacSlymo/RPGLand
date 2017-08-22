@@ -3,11 +3,14 @@
 
     <h1 class="title-component">Log in to your Account !</h1>
 
+    <article v-if="error" class="message is-danger">
+      <div class="message-body">{{ error }}</div>
+    </article>
 
     <div class="field">
       <label class="label">Username</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Text input" value="RPGlover91">
+        <input class="input" v-model="username" type="text" placeholder="Peter91">
         <span class="icon is-small is-left">
           <i class="fa fa-user"></i>
         </span>
@@ -17,12 +20,12 @@
       </div>
       <!-- <p class="help is-success">This username is available</p> -->
     </div>
-    
+
 
     <div class="field">
       <label class="label">Password</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="password" placeholder="" value="12345">
+        <input class="input" v-model="password" type="password" placeholder="123456789">
         <span class="icon is-small is-left">
           <i class="fa fa-unlock-alt" aria-hidden="true"></i>
         </span>
@@ -35,7 +38,7 @@
 
     <div class="field">
       <div class="label">
-        <button class="button is-primary">Submit</button>
+        <button @click="login" class="button is-primary">Submit</button>
       </div>
     </div>
 
@@ -50,10 +53,27 @@
 </template>
 
 <script>
+import auth from "./api";
 export default {
   name: "login",
   data() {
-    return {};
+    return {
+      username: "",
+      password: "",
+      error: ""
+    };
+  },
+  methods: {
+    login() {
+      auth
+        .login(this.username, this.password, this)
+        .then(response => {
+          this.$router.push("/findclub");
+        })
+        .catch(err => {
+          this.error = err;
+        });
+    }
   }
 };
 </script>
