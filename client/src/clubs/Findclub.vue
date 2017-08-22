@@ -2,7 +2,9 @@
   <div class="container box big-vue">
     <h1 class="title-component">Find a club in the <router-link to="">List</router-link> or on the <router-link to="">Map</router-link> !</h1>
 
-    <ul>The clubs
+    <h2>THE LIST</h2>
+    <br>
+    <ul>
       <li v-for="club in clubs">
         <router-link
         :to="'/clubs/' + club._id">
@@ -14,6 +16,7 @@
     <br>
 
     <h2>THE MAP</h2>
+    <br>
     <gmap-map
       :center="center"
       :zoom="8"
@@ -38,7 +41,6 @@
 </template>
 
 <script>
-// import googlemaps from "https://maps.googleapis.com/maps/api/js?key=AIzaSyBt-Uo7thZDjaiOx65s8BQmjBQX90xBsBs&sensor=false";
 import axios from "axios";
 
 // const myAPI = axios.create({
@@ -46,13 +48,14 @@ import axios from "axios";
 // });
 
 export default {
-  name: "hello",
+  name: "findclub",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
+      clubs: [],
+      markers: [],
       infoContent: "",
       infoWinOpen: false,
-      center: { lat: 47.911858, lng: 6.979305999999951 },
+      center: { lat: 48.860468, lng: 2.347653 },
       infoWindowPos: {
         lat: 0,
         lng: 0
@@ -63,8 +66,7 @@ export default {
           width: 0,
           height: -35
         }
-      },
-      markers: []
+      }
     };
   },
   methods: {
@@ -83,6 +85,7 @@ export default {
   created() {
     axios.get("http://localhost:3000/api/clubs", {}).then(response => {
       this.markers = [];
+      this.clubs = [];
       for (var i = 0; i < response.data.length; i++) {
         this.markers.push({
           position: {
@@ -90,6 +93,9 @@ export default {
             lng: response.data[i].coordinates.longitude,
             infoText: response.data[i].name
           }
+        });
+        this.clubs.push({
+          name: response.data[i].name
         });
       }
     });
