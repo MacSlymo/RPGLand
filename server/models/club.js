@@ -8,24 +8,24 @@ const clubSchema = new Schema({
     unique: true
   },
   address: {
-    adressLineOne: {
+    addressLineOne: {
       type: String,
       required: true
     },
-    adressLineTwo: String,
+    addressLineTwo: String,
     city: {
       type: String,
       required: true
     },
-    State: {
+    state: {
       type: String,
       required: true
     },
-    Postcode: {
+    postcode: {
       type: Number,
       required: true
     },
-    Country: {
+    country: {
       type: String,
       required: true
     }
@@ -34,10 +34,15 @@ const clubSchema = new Schema({
     type: String,
     required: true
   },
-  googlePlaceId: String,
-  location: {
-    type: { type: String },
-    coordinates: [Number]
+  coordinates: {
+    latitude: {
+      type: Number,
+      required: true
+    },
+    longitude: {
+      type: Number,
+      required: true
+    }
   },
   tel: {
     type: Number,
