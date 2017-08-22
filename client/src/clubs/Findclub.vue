@@ -43,10 +43,6 @@
 <script>
 import axios from "axios";
 
-// const myAPI = axios.create({
-//   baseUrl: process.env.NODE_ENV === "production" ? '/api' : "http://localhost:3000/api"
-// });
-
 export default {
   name: "findclub",
   data() {
@@ -83,22 +79,29 @@ export default {
     }
   },
   created() {
-    axios.get("http://localhost:3000/api/clubs", {}).then(response => {
-      this.markers = [];
-      this.clubs = [];
-      for (var i = 0; i < response.data.length; i++) {
-        this.markers.push({
-          position: {
-            lat: response.data[i].coordinates.latitude,
-            lng: response.data[i].coordinates.longitude,
-            infoText: response.data[i].name
-          }
-        });
-        this.clubs.push({
-          name: response.data[i].name
-        });
-      }
-    });
+    axios
+      .get(
+        process.env.NODE_ENV === "production"
+          ? "/api"
+          : "http://localhost:3000/api" + "/clubs",
+        {}
+      )
+      .then(response => {
+        this.markers = [];
+        this.clubs = [];
+        for (var i = 0; i < response.data.length; i++) {
+          this.markers.push({
+            position: {
+              lat: response.data[i].coordinates.latitude,
+              lng: response.data[i].coordinates.longitude,
+              infoText: response.data[i].name
+            }
+          });
+          this.clubs.push({
+            name: response.data[i].name
+          });
+        }
+      });
   }
 };
 

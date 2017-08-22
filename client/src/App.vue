@@ -3,7 +3,7 @@
     <nav class="navbar ">
       <div class="navbar-brand">
 
-        <router-link to="">
+        <router-link to="/">
           <img id="main-logo" src="./assets/logo.png" >
         </router-link>
 
@@ -38,28 +38,28 @@
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a class="button is-light" href="http://localhost:8080/#/auth/signup">
+                <router-link class="button is-light" to="/auth/signup">
                   <span class="icon">
                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                   </span>
                   <span>Signup/Login</span>
-                </a>
+                </router-link>
               </p>
               <p class="control">
-                <a class="button is-light" href="http://localhost:8080/#/comment">
+                <router-link class="button is-light" to="/comment">
                   <span class="icon">
                     <i class="fa fa-commenting" aria-hidden="true"></i>
                   </span>
                   <span>Leave a comment</span>
-                </a>
+                </router-link>
               </p>
               <p class="control">
-                <a class="button is-light" href="http://localhost:8080/#/info">
+                <router-link class="button is-light" to="/info">
                   <span class="icon">
                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                   </span>
                   <span>About us</span>
-                </a>
+                </router-link>
               </p>
             </div>
           </div>

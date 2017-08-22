@@ -1,10 +1,12 @@
+require("dotenv").config();
 const express = require("express");
+const history = require("connect-history-api-fallback");
 const path = require("path");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-mongoose.connect("mongodb://localhost/jdrland");
+mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 const passport = require("passport");
 const User = require("./models/user");
 const Club = require("./models/club");
@@ -12,9 +14,8 @@ const config = require("./config");
 const { Strategy, ExtractJwt } = require("passport-jwt");
 const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 
-const index = require("./routes/index");
 const authRoutes = require("./routes/auth");
-// const clubRoutes = require("./routes/club");
+const clubRoutes = require("./routes/club");
 
 const app = express();
 
@@ -67,9 +68,12 @@ app.get("/api/me", (req, res) => {
   }
 });
 
-app.use("/", index);
 app.use("/api", authRoutes);
-// app.use("/api", clubRoutes);
+app.use("/api", clubRoutes);
+
+const clientRoot = path.join(__dirname, "../client/dist");
+// app.use("/", express.static(clientRoot));
+// app.use(history("index.html", { root: clientRoot }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
