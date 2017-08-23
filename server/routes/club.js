@@ -31,8 +31,7 @@ router.post("/", (req, res) => {
     email,
     tel
   } = req.body;
-
-  const user = new User({
+  console.log(
     name,
     addressLineOne,
     addressLineTwo,
@@ -44,12 +43,33 @@ router.post("/", (req, res) => {
     longitude,
     email,
     tel
+  );
+
+  const club = new Club({
+    name,
+    address: {
+      addressLineOne,
+      addressLineTwo,
+      city,
+      state,
+      postcode,
+      country
+    },
+    coordinates: {
+      latitude,
+      longitude
+    },
+    email,
+    tel
   });
-  user.save(function(err) {
+  console.log(club);
+  club.save(function(err, newClub) {
     if (err) {
       res.json({ message: "a problem occured during the registration" });
+      console.log(err);
     } else {
-      res.json({ success: true });
+      res.json(newClub);
+      console.log(newClub);
     }
   });
 });

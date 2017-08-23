@@ -13,7 +13,7 @@ const userSchema = new Schema({
     default: false
   },
   email: String,
-  tel: Number,
+  tel: String,
   characters: []
 });
 

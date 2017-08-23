@@ -2,25 +2,13 @@
   <div class="container box big-vue">
     <h1 class="title-component">Find a club in the <router-link to="">List</router-link> or on the <router-link to="">Map</router-link> !</h1>
 
-    <h2>THE LIST</h2>
-    <br>
-    <ul>
-      <li v-for="club in clubs">
-        <router-link
-        :to="'/clubs/' + club._id">
-        {{ club.name }}
-        </router-link>
-      </li>
-    </ul>
-    <br>
-    <br>
-
-    <h2>THE MAP</h2>
+    <h2>FIND YOUR CLUB ON THE MAP</h2>
+    <h3>(scroll down for detailled list)</h3>
     <br>
     <gmap-map
+      class="googleMap"
       :center="center"
       :zoom="8"
-      style="width: 500px; height: 300px"
     >
     <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
       {{infoContent}}
@@ -34,9 +22,20 @@
         @click="toggleInfoWindow(m,index)"
       ></gmap-marker>
     </gmap-map>
+    <br>
+    <br>
 
-    </map>
-  <!-- <div id="map-canvas"></div> -->
+    <h2>THE CLUBS</h2>
+    <br>
+    <ul>
+      <li v-for="club in clubs">
+        <router-link
+        :to="'/clubs/' + club._id">
+        {{ club.name }}
+        </router-link>
+      </li>
+    </ul>
+    <br>
   </div>
 </template>
 
@@ -104,36 +103,11 @@ export default {
       });
   }
 };
-
-// name: "clubs",
-// props: ["clubs"],
-// data() {
-//   return {
-//     msg: "WELCOME",
-//     clubs: null
-//   };
-// },
-// created() {
-//   this.getClubs().then(club => {
-//     this.club = club;
-//   });
-// },
-// methods: {
-//   getclub(clubId) {
-//     return myAPI.get("/clubs/" + clubId).then(response => {
-//       return response.data.name;
-//     });
-
-// getClubs() {
-//   return myAPI.get("/clubs/").then(response => {
-//     return response.data;
-//   });
-// }
 </script>
 
 <style lang="css">
-/*#map-canvas {
-      height: 600px;
-      width: auto;
-     }*/
+.googleMap {
+  width: 100%;
+  height: 300px
+}
 </style>

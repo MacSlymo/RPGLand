@@ -22,7 +22,7 @@ const clubSchema = new Schema({
       required: true
     },
     postcode: {
-      type: Number,
+      type: String,
       required: true
     },
     country: {

@@ -112,6 +112,21 @@
       </div>
       <!-- <p class="help is-danger">This email is invalid</p> -->
     </div>
+    <h1 class="helpCoord">(Please check
+      <a
+      target="_blank"
+      href="https://support.google.com/maps/answer/18539?co=GENIE.Platform%3DDesktop&hl=fr">
+      How to find coordinates
+      </a>
+      on
+      <a
+      target="_blank"
+      href="https://www.google.fr/maps/@48.8665157,2.3340766,10z">
+      GoogleMaps
+      </a>
+    )</h1>
+
+    <br>
     <br>
 
     <div class="field">
@@ -144,7 +159,7 @@
 
     <div class="field">
       <div class="label">
-        <button v-on:click="submitNewClub()" class="button is-primary">Submit</button>
+        <button @click="submitNewClub" class="button is-primary">Submit</button>
       </div>
     </div>
   </div>
@@ -159,6 +174,7 @@ export default {
   name: "newclub",
   data() {
     return {
+      clubs: [],
       error: "",
       name: "",
       addressLineOne: "",
@@ -179,10 +195,11 @@ export default {
       clubsAPI
         .submitNewClub({
           name: this.name,
-          addressLineOne: this.addressLineTwo,
+          addressLineOne: this.addressLineOne,
           addressLineTwo: this.addressLineTwo,
           city: this.city,
           state: this.state,
+          country: this.country,
           postcode: this.postcode,
           latitude: this.latitude,
           longitude: this.longitude,
@@ -203,4 +220,9 @@ export default {
 </script>
 
 <style lang="css">
+
+.helpCoord {
+  float: left;
+}
+
 </style>
