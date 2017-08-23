@@ -37,7 +37,15 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
-              <p class="control">
+              <p class="control" v-if="user">
+                <router-link class="button is-light" to="/auth/signup">
+                  <span class="icon">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                  </span>
+                  <span>Signup/Login</span>
+                </router-link>
+              </p>
+              <p class="control" v-else>
                 <router-link class="button is-light" to="/auth/signup">
                   <span class="icon">
                     <i class="fa fa-user-plus" aria-hidden="true"></i>

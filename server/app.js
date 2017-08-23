@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const history = require("connect-history-api-fallback");
+const history = require("express-history-api-fallback");
 const path = require("path");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -73,7 +73,7 @@ app.use("/api/clubs", clubRoutes);
 
 const clientRoot = path.join(__dirname, "../client/dist");
 app.use("/", express.static(clientRoot));
-app.use(history({ index: "index.html" }));
+app.use(history("index.html", { root: clientRoot }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
