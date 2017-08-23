@@ -18,12 +18,38 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.post("/", (req, res) => {
-  let myClub = new Club({ text: req.body.text });
-  myClub.save(function(err) {
+  const {
+    name,
+    addressLineOne,
+    addressLineTwo,
+    city,
+    state,
+    postcode,
+    country,
+    latitude,
+    longitude,
+    email,
+    tel
+  } = req.body;
+
+  const user = new User({
+    name,
+    addressLineOne,
+    addressLineTwo,
+    city,
+    state,
+    postcode,
+    country,
+    latitude,
+    longitude,
+    email,
+    tel
+  });
+  user.save(function(err) {
     if (err) {
       res.json({ message: "a problem occured during the registration" });
     } else {
-      res.json({ text: req.body });
+      res.json({ success: true });
     }
   });
 });

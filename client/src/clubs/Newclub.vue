@@ -3,12 +3,16 @@
 
     <h1 class="title-component">Create your Club !</h1>
 
+    <article v-if="error" class="message is-danger">
+      <div class="message-body">{{ error }}</div>
+    </article>
+
     <div class="field">
       <label class="label">Name</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Text input" value="Peter Jackson">
+        <input class="input" v-model="name" type="text" placeholder="My Awesome Club">
         <span class="icon is-small is-left">
-          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+          <i class="fa fa-home" aria-hidden="true"></i>
         </span>
         <span class="icon is-small is-right">
           <i class="fa fa-check"></i>
@@ -20,7 +24,7 @@
     <div class="field">
       <label class="label">Address</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Text input" value="Address Line 1">
+        <input class="input" v-model="addressLineOne" type="text" placeholder="Address Line 1">
         <span class="icon is-small is-left">
           <i class="fa fa-address-card"></i>
         </span>
@@ -31,7 +35,7 @@
       <br>
 
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Text input" value="Address Line 2">
+        <input class="input" v-model="addressLineTwo" type="text" placeholder="Address Line 2">
         <span class="icon is-small is-left">
           <i class="fa fa-address-card"></i>
         </span>
@@ -42,7 +46,7 @@
       <br>
 
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Text input" value="City">
+        <input class="input"  v-model="city"type="text" placeholder="City">
         <span class="icon is-small is-left">
           <i class="fa fa-address-card"></i>
         </span>
@@ -53,7 +57,7 @@
       <br>
 
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Text input" value="State">
+        <input class="input" v-model="state" type="text" placeholder="State">
         <span class="icon is-small is-left">
           <i class="fa fa-address-card"></i>
         </span>
@@ -64,7 +68,7 @@
       <br>
 
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Text input" value="Post Code">
+        <input class="input" v-model="postcode" type="text" placeholder="Post Code">
         <span class="icon is-small is-left">
           <i class="fa fa-address-card"></i>
         </span>
@@ -75,7 +79,7 @@
       <br>
 
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Text input" value="Country">
+        <input class="input" v-model="country" type="text" placeholder="Country">
         <span class="icon is-small is-left">
           <i class="fa fa-address-card"></i>
         </span>
@@ -89,7 +93,7 @@
 
     <div class="field is-grouped">
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Number input" value="Longitude">
+        <input class="input" v-model="latitude" type="text" placeholder="Latitude">
         <span class="icon is-small is-left">
           <i class="fa fa-map-marker" aria-hidden="true"></i>
         </span>
@@ -98,7 +102,7 @@
         </span>
       </div>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Number input" value="Latitude">
+        <input class="input" v-model="longitude" type="text" placeholder="Longitude">
         <span class="icon is-small is-left">
           <i class="fa fa-map-marker" aria-hidden="true"></i>
         </span>
@@ -113,7 +117,7 @@
     <div class="field">
       <label class="label">Email</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Email input" value="best.club@gmail.com">
+        <input class="input" v-model="email" type="text" placeholder="best.club@gmail.com">
         <span class="icon is-small is-left">
           <i class="fa fa-envelope"></i>
         </span>
@@ -127,7 +131,7 @@
     <div class="field">
       <label class="label">Phone Number</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="0675263594" value="">
+        <input class="input" v-model="tel" type="text" placeholder="0675263594">
         <span class="icon is-small is-left">
         <i class="fa fa-mobile" aria-hidden="true"></i>
         </span>
@@ -140,7 +144,7 @@
 
     <div class="field">
       <div class="label">
-        <button v-on:click="submitNewStory()"class="button is-primary">Submit</button>
+        <button v-on:click="submitNewClub()" class="button is-primary">Submit</button>
       </div>
     </div>
   </div>
@@ -149,25 +153,50 @@
 
 <script>
 import axios from "axios";
-
-const myAPI = axios.create({
-  baseURL: "http://localhost:3000/api/"
-});
+import clubsAPI from "./api";
 
 export default {
   name: "newclub",
   data() {
-    return {};
+    return {
+      error: "",
+      name: "",
+      addressLineOne: "",
+      addressLineTwo: "",
+      city: "",
+      state: "",
+      postcode: "",
+      country: "",
+      latitude: "",
+      longitude: "",
+      email: "",
+      tel: ""
+    };
   },
   methods: {
     submitNewClub() {
-      myAPI.post("/clubs/", { text: this.text }).then(response => {
-        this.getClubs().then(clubs => {
-          this.allClubs = clubs;
+      this.error = "";
+      clubsAPI
+        .submitNewClub({
+          name: this.name,
+          addressLineOne: this.addressLineTwo,
+          addressLineTwo: this.addressLineTwo,
+          city: this.city,
+          state: this.state,
+          postcode: this.postcode,
+          latitude: this.latitude,
+          longitude: this.longitude,
+          email: this.email,
+          tel: this.tel
+        })
+        .then(response => {
+          this.$router.push("/findclub");
+        })
+        .catch(err => {
+          this.error =
+            err.response.data +
+            " : Please fill in all the fields or change your Club Name";
         });
-        return response.data;
-      });
-      this.text = "";
     }
   }
 };

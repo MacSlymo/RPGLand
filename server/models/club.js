@@ -30,10 +30,6 @@ const clubSchema = new Schema({
       required: true
     }
   },
-  email: {
-    type: String,
-    required: true
-  },
   coordinates: {
     latitude: {
       type: Number,
@@ -44,8 +40,12 @@ const clubSchema = new Schema({
       required: true
     }
   },
+  email: {
+    type: String,
+    required: true
+  },
   tel: {
-    type: Number,
+    type: String,
     required: true
   },
   gamemasters: [],

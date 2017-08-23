@@ -27,12 +27,6 @@ function login(username, password, vm) {
     });
 }
 
-function secret() {
-  return auth.get("/secret").then(response => {
-    return response.data;
-  });
-}
-
 function loadUser(vm) {
   const token = localStorage.jwtToken;
   const nickname = localStorage["user.nickname"];
@@ -56,6 +50,5 @@ export default {
   signup,
   login,
   logout,
-  secret,
   loadUser
 };

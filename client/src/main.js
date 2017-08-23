@@ -12,7 +12,7 @@ Vue.use(VueGoogleMaps, {
   installComponents: true,
   load: {
     key: "AIzaSyBt-Uo7thZDjaiOx65s8BQmjBQX90xBsBs",
-    libraries: "clubs"
+    libraries: "places"
   }
 });
 new Vue({

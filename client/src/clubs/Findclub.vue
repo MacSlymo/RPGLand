@@ -23,8 +23,8 @@
       style="width: 500px; height: 300px"
     >
     <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
-       {{infoContent}}
-     </gmap-info-window>
+      {{infoContent}}
+    </gmap-info-window>
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
@@ -70,7 +70,7 @@ export default {
       this.infoWindowPos = marker.position;
       this.infoContent = marker.infoText;
       this.center = marker.position;
-      if (this.currentMidx == idx) {
+      if (this.currentMidx === idx) {
         this.infoWinOpen = !this.infoWinOpen;
       } else {
         this.infoWinOpen = true;
