@@ -3,21 +3,21 @@ const router = express.Router();
 
 const Club = require("../models/club");
 
-router.get("/api/clubs/", (req, res, next) => {
+router.get("/", (req, res, next) => {
   Club.find(req.params, function(err, club) {
     if (err) res.json("club not found");
     else res.json(club);
   });
 });
 
-router.get("/api/clubs/:id", (req, res, next) => {
+router.get("/:id", (req, res, next) => {
   Club.findById(req.params.id, function(err, club) {
     if (err) res.json("club not found");
     else res.json(club);
   });
 });
 
-router.post("/api/clubs/", (req, res) => {
+router.post("/", (req, res) => {
   let myClub = new Club({ text: req.body.text });
   myClub.save(function(err) {
     if (err) {

@@ -69,11 +69,11 @@ app.get("/api/me", (req, res) => {
 });
 
 app.use("/api", authRoutes);
-app.use("/api", clubRoutes);
+app.use("/api/clubs", clubRoutes);
 
 const clientRoot = path.join(__dirname, "../client/dist");
-// app.use("/", express.static(clientRoot));
-// app.use(history("index.html", { root: clientRoot }));
+app.use("/", express.static(clientRoot));
+app.use(history({ index: "index.html" }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

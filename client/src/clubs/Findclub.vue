@@ -81,9 +81,9 @@ export default {
   created() {
     axios
       .get(
-        process.env.NODE_ENV === "production"
+        (process.env.NODE_ENV === "production"
           ? "/api"
-          : "http://localhost:3000/api" + "/clubs",
+          : "http://localhost:3000/api") + "/clubs",
         {}
       )
       .then(response => {
