@@ -13,15 +13,15 @@
           </router-link>
         </div>
 
-        <div class="navbar-item">
+        <div class="navbar-item" v-if="$root.user">
           <router-link class="navbar-link" to="/newclub">
             <i class="fa fa-plus-circle" aria-hidden="true"></i>
           </router-link>
         </div>
 
         <div class="navbar-item">
-          <router-link class="navbar-link" to="/myaccount">
-            <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <router-link disabled class="navbar-link account" to="/findclub">
+            <i class="fa fa-user-circle" aria-hidden="true"></i><span class="soon">(Soon ...)</span>
           </router-link>
         </div>
 
@@ -37,28 +37,36 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
-              <p class="control">
+              <p v-if="!$root.user" class="control">
                 <router-link class="button is-light" to="/auth/signup">
                   <span class="icon">
                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                   </span>
-                  <span>Signup/Login</span>
+                  <span>Signup</span>
                 </router-link>
               </p>
+              <p v-if="!$root.user" class="control">
+                <router-link class="button is-light" to="/auth/login">
+                  <span class="icon">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                  </span>
+                  <span>Login</span>
+                </router-link>
+              </p>
+              <p v-else-if="$root.user" class="control">
+                <button @click="logout" class="button is-light" to="/auth/signup">
+                  <span class="icon">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  </span>
+                  <span>Logout</span>
+                </button>
+              </p>
               <p class="control">
-                <router-link class="button is-light" to="/comment">
+                <router-link disabled class="button is-light" to="/findclub">
                   <span class="icon">
                     <i class="fa fa-commenting" aria-hidden="true"></i>
                   </span>
-                  <span>Leave a comment</span>
-                </router-link>
-              </p>
-              <p class="control">
-                <router-link class="button is-light" to="/info">
-                  <span class="icon">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                  </span>
-                  <span>About us</span>
+                  <span>Leave a comment (Soon ...)</span>
                 </router-link>
               </p>
             </div>
@@ -77,8 +85,27 @@
 </template>
 
 <script>
+import auth from "./apiLogout";
+import axios from "axios";
 export default {
-  name: "app"
+  name: "app",
+  data() {
+    return {};
+  },
+  methods: {
+    logout() {
+      this.error = "";
+      auth
+        .logout(this)
+        .then(response => {
+          this.$router.push("/");
+        })
+        .catch(err => {
+          console.log(err);
+          this.error = "Something went wrong with the registration";
+        });
+    }
+  }
 };
 </script>
 
@@ -111,6 +138,14 @@ export default {
 .title-component {
   font-size: 2em;
   margin-bottom: 20px;
+}
+
+.soon {
+  margin-left: 5px;
+}
+
+.account {
+  opacity: 0.3;
 }
 
 </style>

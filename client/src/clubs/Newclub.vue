@@ -2,6 +2,8 @@
   <div class="container box big-vue">
 
     <h1 class="title-component">Create your Club !</h1>
+    <h4>(all fields marked with a "<i class="fa fa-check"></i>" are mandatory)</h4>
+    <br>
 
     <article v-if="error" class="message is-danger">
       <div class="message-body">{{ error }}</div>
@@ -35,12 +37,9 @@
       <br>
 
       <div class="control has-icons-left has-icons-right">
-        <input class="input" v-model="addressLineTwo" type="text" placeholder="Address Line 2">
+        <input class="input" v-model="addressLineTwo" type="text" placeholder="Address Line 2 (optional)">
         <span class="icon is-small is-left">
           <i class="fa fa-address-card"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fa fa-check"></i>
         </span>
       </div>
       <br>
@@ -210,9 +209,7 @@ export default {
           this.$router.push("/findclub");
         })
         .catch(err => {
-          this.error =
-            err.response.data +
-            " : Please fill in all the fields or change your Club Name";
+          this.error = "Something went wrong with the registration";
         });
     }
   }

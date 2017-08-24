@@ -42,13 +42,6 @@
       </div>
     </div>
 
-    <h1>You don't have an Account ? Please
-      <a
-      href="http://localhost:8080/#/auth/signup">
-      Sign up here
-      </a>
-    </h1>
-
   </div>
 </template>
 
@@ -71,7 +64,7 @@ export default {
           this.$router.push("/findclub");
         })
         .catch(err => {
-          this.error = err;
+          this.error = "Something went wrong with the registration";
         });
     }
   }

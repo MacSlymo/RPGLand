@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 
 const Club = require("../models/club");
 
@@ -17,7 +18,7 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
-router.post("/", (req, res) => {
+router.post("/", ensureLoggedIn(), (req, res) => {
   const {
     name,
     addressLineOne,
@@ -31,19 +32,6 @@ router.post("/", (req, res) => {
     email,
     tel
   } = req.body;
-  console.log(
-    name,
-    addressLineOne,
-    addressLineTwo,
-    city,
-    state,
-    postcode,
-    country,
-    latitude,
-    longitude,
-    email,
-    tel
-  );
 
   const club = new Club({
     name,
@@ -62,7 +50,6 @@ router.post("/", (req, res) => {
     email,
     tel
   });
-  console.log(club);
   club.save(function(err, newClub) {
     if (err) {
       res.json({ message: "a problem occured during the registration" });

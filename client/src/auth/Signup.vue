@@ -2,6 +2,8 @@
   <div class="container box big-vue">
 
     <h1 class="title-component">Create your Account !</h1>
+    <h4>(all fields marked with a "<i class="fa fa-check"></i>" are mandatory)</h4>
+    <br>
 
     <article v-if="error" class="message is-danger">
       <div class="message-body">{{ error }}</div>
@@ -76,9 +78,6 @@
         <span class="icon is-small is-left">
           <i class="fa fa-envelope"></i>
         </span>
-        <span class="icon is-small is-right">
-          <i class="fa fa-check"></i>
-        </span>
       </div>
       <!-- <p class="help is-danger">This email is invalid</p> -->
     </div>
@@ -91,9 +90,6 @@
         <span class="icon is-small is-left">
         <i class="fa fa-mobile" aria-hidden="true"></i>
         </span>
-        <span class="icon is-small is-right">
-          <i class="fa fa-check"></i>
-        </span>
       </div>
       <!-- <p class="help is-danger">This email is invalid</p> -->
     </div>
@@ -105,13 +101,6 @@
       </div>
     </div>
     <br>
-
-    <h1>Already have an Account ? Please
-      <a
-      href="http://localhost:8080/#/auth/login">
-      Log in here
-      </a>
-    </h1>
   </div>
 </template>
 
@@ -144,13 +133,13 @@ export default {
           email: this.email,
           tel: this.tel
         })
+        .login(this.username, this.password, this)
         .then(response => {
           this.$router.push("/findclub");
         })
         .catch(err => {
-          this.error =
-            err.response.data +
-            " : Please fill in all the fields or change your Username/Nickname";
+          console.log(err);
+          this.error = "Something went wrong with the registration";
         });
     }
   }
