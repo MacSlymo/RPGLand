@@ -24,6 +24,20 @@
     </div>
 
     <div class="field">
+      <label class="label">Website</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input" v-model="website" type="text" placeholder="http://www.myawesomeclub.fr/">
+        <span class="icon is-small is-left">
+          <i class="fa fa-globe" aria-hidden="true"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fa fa-check"></i>
+        </span>
+      </div>
+      <!-- <p class="help is-success">This username is available</p> -->
+    </div>
+
+    <div class="field">
       <label class="label">Address</label>
       <div class="control has-icons-left has-icons-right">
         <input class="input" v-model="addressLineOne" type="text" placeholder="Address Line 1">
@@ -176,6 +190,7 @@ export default {
       clubs: [],
       error: "",
       name: "",
+      website: "",
       addressLineOne: "",
       addressLineTwo: "",
       city: "",
@@ -194,6 +209,7 @@ export default {
       clubsAPI
         .submitNewClub({
           name: this.name,
+          website: this.website,
           addressLineOne: this.addressLineOne,
           addressLineTwo: this.addressLineTwo,
           city: this.city,

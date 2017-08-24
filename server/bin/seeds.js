@@ -6,6 +6,8 @@ mongoose.connect("mongodb://localhost/jdrland");
 const clubs = [
   {
     name: "Chez Omphéin Tyssom",
+    website:
+      "http://www.google.fr/maps/place/34+Rue+de+Montlh%C3%A9ry,+91400+Orsay/@48.6882229,2.1797403,17z/data=!3m1!4b1!4m8!1m2!2m1!1s34+rue+de+montlh%C3%A9ry!3m4!1s0x47e5d60f63786b23:0xcb17cf46a8d714f3!8m2!3d48.6882194!4d2.1819343",
     address: {
       addressLineOne: "34 rue de montlhéry",
       addressLineTwo: "",
@@ -25,6 +27,7 @@ const clubs = [
   },
   {
     name: "Cercle Fantastique",
+    website: "http://www.cerclefantastique.fr/",
     address: {
       addressLineOne: "75 rue Vincent Fayo",
       addressLineTwo: "La Résidence Universitaire",
@@ -44,6 +47,7 @@ const clubs = [
   },
   {
     name: "La Boite à Chimère",
+    website: "http://laboiteachimere.com/",
     address: {
       addressLineOne: "19 avenue Victoria",
       addressLineTwo: "Dernier Bar avant la fin du monde",

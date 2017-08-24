@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container box big-vue">
-    <h1 class="title-component">Find a club in the <router-link to="">List</router-link> or on the <router-link to="">Map</router-link> !</h1>
+    <h1 class="title-component">Find a club on the <router-link to="">Map</router-link> or in the <router-link to="">List</router-link> !</h1>
 
     <h2>FIND YOUR CLUB ON THE MAP</h2>
     <h3>(scroll down for detailled list)</h3>
@@ -11,7 +11,9 @@
       :zoom="8"
     >
     <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
-      {{infoContent}}
+      <a :href="selectedMarker ? selectedMarker.position.infoWebsite : nothing">
+        {{ selectedMarker ? selectedMarker.position.infoName : nothing  }}
+      </a>&nbsp;&nbsp;
     </gmap-info-window>
       <gmap-marker
         :key="index"
@@ -28,12 +30,16 @@
     <h2>THE CLUBS</h2>
     <br>
     <ul>
-      <li v-for="club in clubs">
-        <router-link
-        :to="'/clubs/' + club._id">
+      <li class="club" v-for="club in clubs">
         {{ club.name }}
-        </router-link>
+        <br>
+        <span>Email: {{ club.email }}</span>
+        <br>
+        <span>Phone: 0{{ club.tel }}</span>
+        <br>
+        (<a :href="club.website">Website</a>)
       </li>
+
     </ul>
     <br>
   </div>
@@ -48,7 +54,9 @@ export default {
     return {
       clubs: [],
       markers: [],
-      infoContent: "",
+      selectedMarker: null,
+      nothing: "",
+      infoContent: null,
       infoWinOpen: false,
       center: { lat: 48.860468, lng: 2.347653 },
       infoWindowPos: {
@@ -65,9 +73,13 @@ export default {
     };
   },
   methods: {
-    toggleInfoWindow: function(marker, idx) {
+    toggleInfoWindow(marker, idx) {
       this.infoWindowPos = marker.position;
-      this.infoContent = marker.infoText;
+      this.infoContent = {
+        infoName: marker.position.infoName,
+        infoWebsite: marker.position.infoWebsite
+      };
+      this.selectedMarker = marker;
       this.center = marker.position;
       if (this.currentMidx === idx) {
         this.infoWinOpen = !this.infoWinOpen;
@@ -93,11 +105,15 @@ export default {
             position: {
               lat: response.data[i].coordinates.latitude,
               lng: response.data[i].coordinates.longitude,
-              infoText: response.data[i].name
+              infoName: response.data[i].name,
+              infoWebsite: response.data[i].website
             }
           });
           this.clubs.push({
-            name: response.data[i].name
+            name: response.data[i].name,
+            website: response.data[i].website,
+            email: response.data[i].email,
+            tel: response.data[i].tel
           });
         }
       });
@@ -108,6 +124,11 @@ export default {
 <style lang="css">
 .googleMap {
   width: 100%;
-  height: 300px
+  height: 450px
 }
+
+.club {
+  margin-bottom: 15px;
+}
+
 </style>

@@ -7,6 +7,10 @@ const clubSchema = new Schema({
     required: true,
     unique: true
   },
+  website: {
+    type: String,
+    required: true
+  },
   address: {
     addressLineOne: {
       type: String,

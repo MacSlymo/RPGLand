@@ -21,6 +21,7 @@ router.get("/:id", (req, res, next) => {
 router.post("/", ensureLoggedIn(), (req, res) => {
   const {
     name,
+    website,
     addressLineOne,
     addressLineTwo,
     city,
@@ -35,6 +36,7 @@ router.post("/", ensureLoggedIn(), (req, res) => {
 
   const club = new Club({
     name,
+    website,
     address: {
       addressLineOne,
       addressLineTwo,
