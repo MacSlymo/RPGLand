@@ -133,12 +133,12 @@ export default {
           email: this.email,
           tel: this.tel
         })
-        .login(this.username, this.password, this)
-        .then(response => {
-          this.$router.push("/findclub");
+        .then(() => {
+          auth.login(this.username, this.password, this).then(() => {
+            this.$router.push("/findclub");
+          });
         })
         .catch(err => {
-          console.log(err);
           this.error = "Something went wrong with the registration";
         });
     }

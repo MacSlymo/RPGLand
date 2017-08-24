@@ -9,7 +9,6 @@ function logout(vm) {
   localStorage.removeItem("jwtToken");
   delete axios.defaults.headers.common.Authorization;
   vm.$root.user = null;
-  console.log("function logout works");
 }
 
 export default {

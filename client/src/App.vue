@@ -95,15 +95,8 @@ export default {
   methods: {
     logout() {
       this.error = "";
-      auth
-        .logout(this)
-        .then(response => {
-          this.$router.push("/");
-        })
-        .catch(err => {
-          console.log(err);
-          this.error = "Something went wrong with the registration";
-        });
+      auth.logout(this);
+      this.$router.push("/");
     }
   }
 };

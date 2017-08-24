@@ -24,9 +24,9 @@
             <br>
             <h3 class="subtitle">Look for the club that suits you</h3>
             <br>
-            <h3 class="subtitle">See its location on the map</h3>
+            <h3 class="subtitle">Locate it on the map</h3>
             <br>
-            <h3 class="subtitle">Discuss with its Game Master and other members</h3>
+            <h3 class="subtitle">Discuss with other members</h3>
           </div>
         </article>
       </div>
@@ -41,7 +41,7 @@
             <br>
             <h3 class="subtitle">Live adventures together</h3>
             <br>
-            <h3 class="subtitle">Let your shared imagination drive you far far away</h3>
+            <h3 class="subtitle">Create your own Character for your next session !</h3>
           </div>
         </article>
       </div>
