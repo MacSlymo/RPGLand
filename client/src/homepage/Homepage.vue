@@ -24,7 +24,7 @@
             <br>
             <h3 class="subtitle">Look for the club that suits you</h3>
             <br>
-            <h3 class="subtitle">Locate it on the map</h3>
+            <h3 class="subtitle">Locate a Session on the map</h3>
             <br>
             <h3 class="subtitle">Discuss with other members</h3>
           </div>
@@ -46,35 +46,6 @@
         </article>
       </div>
       <br>
-
-      <!-- <div class="tile is-child is-4 box">
-        <div class="content">
-          <article class="tile notification is-primary">
-            <p class="title">Find a Club near you !</p>
-            <br>
-            <h3 class="subtitle">Discover what Roleplaying Game is</h3>
-            <br>
-            <h3 class="subtitle">Join a session near you</h3>
-            <br>
-            <h3 class="subtitle">Create a new character for your next session</h3>
-          </article>
-        </div>
-      </div>
-      <br>
-
-      <div class="tile is-child is-4 box">
-        <div class="content">
-          <article class="tile notification is-primary">
-            <p class="title">Join the Community !</p>
-            <br>
-            <h3 class="subtitle">Discover what Roleplaying Game is</h3>
-            <br>
-            <h3 class="subtitle">Join a session near you</h3>
-            <br>
-            <h3 class="subtitle">Create a new character for your next session</h3>
-          </article>
-        </div>
-      </div> -->
     </div>
   </div>
 

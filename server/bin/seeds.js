@@ -64,6 +64,66 @@ const clubs = [
     tel: 0692736483,
     gamemasters: [],
     members: []
+  },
+  {
+    name: "Les Gobelins Fanatiques",
+    website: "http://gob-fan.forumactif.org/",
+    address: {
+      addressLineOne: "2, Rue du Docteur Roux",
+      addressLineTwo: "",
+      city: "SCEAUX",
+      state: "Ile-de-France",
+      postcode: 92330,
+      country: "France"
+    },
+    email: "gobelinss@gmail.com",
+    coordinates: {
+      latitude: 48.785044,
+      longitude: 2.300639
+    },
+    tel: 0673884625,
+    gamemasters: [],
+    members: []
+  },
+  {
+    name: "L'Antre",
+    website: "http://www.antre.fr/forum/",
+    address: {
+      addressLineOne: "16 Rue Voltaire",
+      addressLineTwo: "EPITA"
+      city: "LE KREMLIN-BICETRE",
+      state: "Ile-de-France",
+      postcode: 94270,
+      country: "France"
+    },
+    email: "lantre.epi@hotmail.fr",
+    coordinates: {
+      latitude: 48.815543,
+      longitude: 2.363005
+    },
+    tel: 0632993745,
+    gamemasters: [],
+    members: []
+  },
+  {
+    name: "Le forum Opale",
+    website: "http://forum.opale-roliste.com/",
+    address: {
+      addressLineOne: "44 rue Grégoire de Tours",
+      addressLineTwo: "Les Caves Alliées",
+      city: "PARIS",
+      state: "Ile-de-France",
+      postcode: 75006,
+      country: "France"
+    },
+    email: "president@opale-roliste.com",
+    coordinates: {
+      latitude: 48.852124,
+      longitude: 2.337412
+    },
+    tel: 0692938473,
+    gamemasters: [],
+    members: []
   }
 ];
 
