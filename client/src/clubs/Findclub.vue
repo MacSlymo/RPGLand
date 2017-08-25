@@ -11,7 +11,7 @@
       :zoom="8"
     >
     <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
-      <a :href="selectedMarker ? selectedMarker.position.infoWebsite : nothing">
+      <a target="_blank" :href="selectedMarker ? selectedMarker.position.infoWebsite : nothing">
         {{ selectedMarker ? selectedMarker.position.infoName : nothing  }}
       </a>&nbsp;&nbsp;
     </gmap-info-window>
@@ -37,7 +37,7 @@
         <br>
         <span>Phone: 0{{ club.tel }}</span>
         <br>
-        (<a :href="club.website">Website</a>)
+        (<a target="_blank" :href="club.website">Website</a>)
       </li>
 
     </ul>

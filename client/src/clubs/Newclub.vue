@@ -104,44 +104,6 @@
     </div>
     <br>
 
-    <div class="field is-grouped">
-      <div class="control has-icons-left has-icons-right">
-        <input class="input" v-model="latitude" type="text" placeholder="Latitude">
-        <span class="icon is-small is-left">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fa fa-check"></i>
-        </span>
-      </div>
-      <div class="control has-icons-left has-icons-right">
-        <input class="input" v-model="longitude" type="text" placeholder="Longitude">
-        <span class="icon is-small is-left">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fa fa-check"></i>
-        </span>
-      </div>
-      <!-- <p class="help is-danger">This email is invalid</p> -->
-    </div>
-    <h1 class="helpCoord">(Please check
-      <a
-      target="_blank"
-      href="https://support.google.com/maps/answer/18539?co=GENIE.Platform%3DDesktop&hl=fr">
-      How to find coordinates
-      </a>
-      on
-      <a
-      target="_blank"
-      href="https://www.google.fr/maps/@48.8665157,2.3340766,10z">
-      GoogleMaps
-      </a>
-    )</h1>
-
-    <br>
-    <br>
-
     <div class="field">
       <label class="label">Email</label>
       <div class="control has-icons-left has-icons-right">
@@ -206,27 +168,40 @@ export default {
   methods: {
     submitNewClub() {
       this.error = "";
-      clubsAPI
-        .submitNewClub({
-          name: this.name,
-          website: this.website,
-          addressLineOne: this.addressLineOne,
-          addressLineTwo: this.addressLineTwo,
-          city: this.city,
-          state: this.state,
-          country: this.country,
-          postcode: this.postcode,
-          latitude: this.latitude,
-          longitude: this.longitude,
-          email: this.email,
-          tel: this.tel
-        })
-        .then(response => {
-          this.$router.push("/findclub");
-        })
-        .catch(err => {
-          this.error = "Something went wrong with the registration";
-        });
+      let mapG = new google.maps.Geocoder();
+      let resTmp = mapG.geocode(
+        {
+          address: this.addressLineOne + " " + this.city + " " + this.postcode,
+          region: "FR"
+        },
+        (results, status) => {
+          let latitude = results[0].geometry.location.lat();
+          let longitude = results[0].geometry.location.lng();
+          console.log(latitude, longitude);
+          clubsAPI
+            .submitNewClub({
+              name: this.name,
+              website: this.website,
+              addressLineOne: this.addressLineOne,
+              addressLineTwo: this.addressLineTwo,
+              city: this.city,
+              state: this.state,
+              country: this.country,
+              postcode: this.postcode,
+              latitude,
+              longitude,
+              email: this.email,
+              tel: this.tel
+            })
+            .then(response => {
+              this.$router.push("/findclub");
+            })
+            .catch(err => {
+              this.error = "Something went wrong with the registration";
+            });
+          console.log("this far");
+        }
+      );
     }
   }
 };

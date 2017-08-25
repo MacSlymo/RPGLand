@@ -96,7 +96,7 @@ export default {
     logout() {
       this.error = "";
       auth.logout(this);
-      this.$router.push("/");
+      this.$router.push("/findclub");
     }
   }
 };
