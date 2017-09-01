@@ -35,7 +35,7 @@
         <br>
         <span>Email: {{ club.email }}</span>
         <br>
-        <span>Phone: 0{{ club.tel }}</span>
+        <span>Phone: {{ club.tel }}</span>
         <br>
         (<a target="_blank" :href="club.website">Website</a>)
       </li>
@@ -100,7 +100,7 @@ export default {
       .then(response => {
         this.markers = [];
         this.clubs = [];
-        for (var i = 0; i < response.data.length; i++) {
+        for (let i = 0; i < response.data.length; i++) {
           this.markers.push({
             position: {
               lat: response.data[i].coordinates.latitude,
